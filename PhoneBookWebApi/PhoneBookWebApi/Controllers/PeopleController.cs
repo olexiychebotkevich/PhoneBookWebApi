@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using PhoneBookWebApi;
 
@@ -17,6 +18,7 @@ namespace PhoneBookWebApi.Controllers
     /// </summary>
     /// 
     [RoutePrefix("Api/People")]
+    [EnableCors(origins: "http://localhost:4201", headers: "*", methods: "*")]
     public class PeopleController : ApiController
     {
         private PhoneBookContext db = new PhoneBookContext();
@@ -31,6 +33,7 @@ namespace PhoneBookWebApi.Controllers
         [Route("ReadAllPeopleInfo")]
         public IQueryable<Person> GetPeople()
         {
+           
             return db.People;
         }
 
